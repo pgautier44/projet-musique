@@ -1,0 +1,147 @@
+.homeCover {
+  position: relative;
+  min-height: calc(90vh - 104px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.homeCover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px; /* hauteur de la bande */
+  background: linear-gradient(90deg, #ff8a4a, #ff603a);
+  z-index: 2;
+}
+
+.homeCoverContent {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 60px; /* écart réduit malgré grande image */
+  max-width: 1400px;
+  padding: 0 2rem;
+  z-index: 1;
+}
+
+/* Image très grande, décalée vers la gauche */
+.homeCoverImage img {
+  width: 750px; 
+  height: 520px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.45);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-left: -50px; /* léger décalage vers la gauche */
+  filter: saturate(0.85);
+}
+
+.homeCoverImage img:hover {
+  transform: scale(1.02) rotate(-1deg);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55);
+}
+
+.homeCoverText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #ffe6d2;
+  max-width: 500px;
+  padding-top: 20px;
+}
+
+/* Titre plus petit */
+.homeCoverTitle {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #f5d6c6;
+  margin: 0;
+}
+
+/* Artiste */
+.homeCoverArtist {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  opacity: 0.65;
+  color: #e6c9b8;
+}
+
+/* Bouton */
+.homeCoverButton {
+  margin-top: 32px;
+  padding: 12px 32px;
+  background: transparent;
+  color: #ff8a4a;
+  border: 1px solid rgba(255, 138, 74, 0.5);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.homeCoverButton:hover {
+  background: #ff8a4a;
+  color: #0a0d1a;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .homeCoverImage img {
+    width: 600px;
+    height: 600px;
+  }
+  .homeCoverContent {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .homeCoverContent {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .homeCoverImage img {
+    width: 480px;
+    height: 480px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .homeCoverImage img {
+    width: 360px;
+    height: 360px;
+  }
+
+  .homeCoverTitle {
+    font-size: 2.5rem;
+  }
+
+  .homeCoverArtist {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .homeCoverImage img {
+    width: 240px;
+    height: 240px;
+  }
+
+  .homeCoverTitle {
+    font-size: 2rem;
+  }
+
+  .homeCoverArtist {
+    font-size: 0.85rem;
+  }
+}

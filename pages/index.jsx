@@ -1,14 +1,12 @@
-import Header from '../src/components/Header';
-import Footer from '../src/components/Footer';
+import Header from '../src/components/Header/Header';
+import Footer from '../src/components/Footer/Footer';
+import HomeCover from "../src/components/HomeCover/HomeCover";
 
 export default function Home() {
   return (
     <>
       <Header />
-      <main style={{ padding: '2rem' }}>
-        <h2>Bienvenue sur le projet musique !</h2>
-        <p>Contenu de la page ici...</p>
-      </main>
+      <HomeCover />
       <Footer />
     </>
   );

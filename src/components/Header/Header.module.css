@@ -1,0 +1,262 @@
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+
+  padding: 1.5rem 2rem;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 120, 60, 0.15), transparent 60%),
+    linear-gradient(180deg, #0e1324 0%, #0a0d1a 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 15s ease infinite;
+
+  position: relative;
+}
+
+/* Texture */
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/subtle-pattern.png');
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== LOGO ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.albumLogo {
+  width: clamp(80px, 8vw, 120px);
+  height: auto;
+
+  opacity: 0.9;
+  filter: drop-shadow(0 6px 12px rgba(255, 120, 60, 0.25));
+  transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.albumLogo:hover {
+  opacity: 1;
+  transform: rotate(-2deg) scale(1.05);
+  filter: drop-shadow(0 8px 20px rgba(255, 140, 80, 0.5));
+}
+
+/* ===== SEPARATOR ===== */
+.separator {
+  width: 2px;
+  height: 40px;
+  background: rgba(255, 120, 60, 0.4);
+  z-index: 1;
+}
+
+/* ===== NAV ===== */
+.nav {
+  display: flex;
+  gap: 2.75rem;
+  z-index: 1;
+}
+
+.nav a {
+  position: relative;
+  text-decoration: none;
+
+  color: rgba(255, 230, 210, 0.85);
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  transition: color 0.3s ease;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #ff8a4a;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover {
+  color: #ff8a4a;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== CLIP BUTTON ===== */
+.clipButtonWrapper {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.clipButton {
+  all: unset; /* IMPORTANT : bouton propre */
+  cursor: pointer;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  font-size: 1.2rem;
+  color: #ff8a4a;
+
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 138, 74, 0.6),
+    0 6px 18px rgba(255, 138, 74, 0.35);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Anneau */
+.clipButton::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 138, 74, 0.4);
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.clipButton:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 0 1px rgba(255, 138, 74, 0.8),
+    0 8px 26px rgba(255, 138, 74, 0.6);
+}
+
+.clipButton:hover::before {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Label */
+.clipButton::after {
+  content: 'PREVIEW';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+
+  padding: 0.35rem 0.6rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+
+  color: #ff8a4a;
+  background: rgba(14, 19, 36, 0.9);
+
+  border: 1px solid rgba(255, 138, 74, 0.4);
+  border-radius: 999px;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.clipButton:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+
+/* ===== MODALE VIDEO ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 1000;
+}
+
+.modalContent {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+
+  background: black;
+  border-radius: 16px;
+  overflow: hidden;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 1.25rem;
+  }
+
+  .nav {
+    gap: 1.75rem;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  .clipButtonWrapper {
+    margin-top: 1rem;
+  }
+}
+
+/* ===== ANIMATION ===== */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
